@@ -51,5 +51,5 @@ mainFrame:Button("X", function()
     w:Destroy()
 end)
 
--- Permitir mover o quadro pelo toque
+-- Permitir mover o quadro pelo toque 1
 mainFrame:Draggable(true)
