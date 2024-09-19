@@ -1,5 +1,5 @@
 -- Carregar biblioteca de interface
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua"))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/PatoScripter/PatoScriptFPS/refs/heads/main/cheat%20FPS%20IA"))()
 local w = library:CreateWindow("PatoScripter")
 
 -- Criar quadro principal
