@@ -1,0 +1,55 @@
+-- Carregar biblioteca de interface
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua"))()
+local w = library:CreateWindow("PatoScripter")
+
+-- Criar quadro principal
+local mainFrame = w:CreateFolder("Menu")
+
+-- Botão para multiplicar HP
+mainFrame:Button("HP 10000", function()
+    local player = game.Players.LocalPlayer
+    player.Character.Humanoid.MaxHealth = player.Character.Humanoid.MaxHealth * 100
+    player.Character.Humanoid.Health = player.Character.Humanoid.MaxHealth
+end)
+
+-- Botão para ESP e FOV
+mainFrame:Button("ESP E FOV", function()
+    for _, player in pairs(game.Players:GetPlayers()) do
+        if player.Team == game.Players.LocalPlayer.Team then
+            -- Time amigo
+            player.Character.Head.BrickColor = BrickColor.new("Bright green")
+        else
+            -- Time inimigo
+            player.Character.Head.BrickColor = BrickColor.new("Bright red")
+        end
+    end
+end)
+
+-- Botão para AI BOT
+mainFrame:Button("AI BOT", function()
+    local player = game.Players.LocalPlayer
+    local closestEnemy = nil
+    local shortestDistance = math.huge
+
+    for _, enemy in pairs(game.Players:GetPlayers()) do
+        if enemy.Team ~= player.Team and enemy.Character and enemy.Character:FindFirstChild("Head") then
+            local distance = (player.Character.Head.Position - enemy.Character.Head.Position).magnitude
+            if distance < shortestDistance then
+                closestEnemy = enemy
+                shortestDistance = distance
+            end
+        end
+    end
+
+    if closestEnemy then
+        player.Character.Head.CFrame = CFrame.new(player.Character.Head.Position, closestEnemy.Character.Head.Position)
+    end
+end)
+
+-- Função para fechar o quadro
+mainFrame:Button("X", function()
+    w:Destroy()
+end)
+
+-- Permitir mover o quadro pelo toque
+mainFrame:Draggable(true)
